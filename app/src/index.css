@@ -1,13 +1,48 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.card {
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: 10px;
+  margin: 5px;
+  width: 60px;
+  height: 90px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.card-value {
+  font-size: 16px;
+}
+
+.card-suit {
+  font-size: 20px;
+}
+
+.deck {
+  display: flex;
+}
+
+.game {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.player-hand,
+.dealer-hand {
+  margin: 20px;
+}
+
+.hand {
+  display: flex;
+}
+
+.actions {
+  margin: 10px;
+}
+
+.result {
+  font-size: 18px;
+  margin-top: 20px;
 }
