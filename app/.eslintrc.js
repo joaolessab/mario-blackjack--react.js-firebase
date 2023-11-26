@@ -15,10 +15,14 @@ module.exports = {
         "node": true
       },
       "files": [
-        ".eslintrc.{js,cjs}"
+        ".eslintrc.{js,cjs}", "*.ts", "*.tsx"
       ],
       "parserOptions": {
         "sourceType": "script"
+      },
+      "rules": {
+        "react/prop-types": "off",
+        "@typescript-eslint/no-explicit-any": "warn",
       }
     }
   ],
