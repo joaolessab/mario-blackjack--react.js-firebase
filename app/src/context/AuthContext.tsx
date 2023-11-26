@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from "react";
 import { useEffect, useContext, createContext, useState } from "react";
 import { auth, db } from "../firebase/firebaseConfig";
@@ -11,7 +12,7 @@ import {
   setDoc
 } from "firebase/firestore";
 
-const AuthContext = createContext<unknown | undefined>(undefined);
+const AuthContext = createContext<any | undefined>(undefined);
 
 interface User {
   displayName: string | null;

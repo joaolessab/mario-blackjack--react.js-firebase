@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import {
   generateDeck,
@@ -6,23 +6,42 @@ import {
   calculateScore,
   dealInitialHands,
 } from "../utils/gameUtils";
+import { generateRandomString } from "../utils/stringUtils";
 
 import Hand from "../components/Hand";
 import Logout from "../components/Logout";
+
+import {
+  doc,
+  setDoc,
+  serverTimestamp,
+} from "firebase/firestore";
+
+import { db } from "../firebase/firebaseConfig";
+import { useAuth } from "../context/AuthContext";
 
 export interface IGameState {
   deck: { value: string; suit: string }[];
   playerHand: { value: string; suit: string }[];
   dealerHand: { value: string; suit: string }[];
-  result: string;
+  resultLabel: string;
+  winner: string;
 }
 
 const Game: React.FC = () => {
+  const { currentUser } = useAuth();
+
   const [gameState, setGameState] = useState<IGameState>(() => {
     const deck = shuffleDeck(generateDeck());
 
     return dealInitialHands(deck);
   });
+
+  useEffect(() => {
+    if (gameState.winner !== "") {
+      saveResult();
+    }
+  }, [gameState]);
 
   const handleHit = () => {
     const newCard = gameState.deck.pop();
@@ -30,12 +49,28 @@ const Game: React.FC = () => {
     if (newCard) {
       const playerHand = [...gameState.playerHand, newCard];
       const playerScore = calculateScore(playerHand);
+      const dealerScore = calculateScore(gameState.dealerHand);
+
+      let resultLabel = "";
+      let winner = "";
+
+      if (playerScore > 21) {
+        resultLabel = "Player Busts! Dealer Wins!";
+        winner = "dealer";
+      } else if (playerScore === 21 && dealerScore !== 21) {
+        resultLabel = "Player Wins!";
+        winner = "player";
+      } else {
+        resultLabel = "";
+        winner = "";
+      }
 
       setGameState((prevGameState) => ({
         ...prevGameState,
         deck: gameState.deck,
         playerHand,
-        result: playerScore > 21 ? "Player Busts! Dealer Wins!" : playerScore === 21 ? "Player Wins!" : "",
+        resultLabel,
+        winner,
       }));
     }
   };
@@ -53,21 +88,26 @@ const Game: React.FC = () => {
     const dealerScore = calculateScore(dealerHand);
     const playerScore = calculateScore(gameState.playerHand);
 
-    let result = "";
+    let resultLabel = "";
+    let winner = "";
 
     if (dealerScore > 21 || playerScore > dealerScore) {
-      result = "Player Wins!";
+      resultLabel = "Player Wins!";
+      winner = "player";
     } else if (dealerScore > playerScore) {
-      result = "Dealer Wins!";
+      resultLabel = "Dealer Wins!";
+      winner = "dealer";
     } else {
-      result = "It's a Tie!";
+      resultLabel = "It's a Tie!";
+      winner = "tie";
     }
 
     setGameState((prevGameState) => ({
       ...prevGameState,
       deck: gameState.deck,
       dealerHand,
-      result,
+      resultLabel,
+      winner,
     }));
   };
     
@@ -75,8 +115,27 @@ const Game: React.FC = () => {
     const deck = shuffleDeck(generateDeck());
     setGameState(dealInitialHands(deck));
   };
+
+  const saveResult = async () => {
+    try {
+      // Store game in DB
+      const gameData = {
+        user: currentUser.uid,
+        playerHand: gameState.playerHand,
+        dealerHand: gameState.dealerHand,
+        winner: gameState.winner,
+        currentDate: serverTimestamp(),
+      };
+
+      await setDoc(doc(db, "games", generateRandomString()), gameData);
+
+      console.log("Successfully saved in");
+    } catch (e) {
+      console.log("Something went wrong");
+    }
+  };
     
-  const isGameOver = gameState.result !== "";
+  const isGameOver = gameState.winner !== "";
 
   return (
     <div className="game">
@@ -103,7 +162,7 @@ const Game: React.FC = () => {
         isGameOver={isGameOver}
       />
 
-      <div className="result">{gameState.result}</div>
+      <div className="result">{gameState.resultLabel}</div>
     </div>
   );
 };

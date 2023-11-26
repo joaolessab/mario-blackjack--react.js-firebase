@@ -72,6 +72,7 @@ export const dealInitialHands = (shuffledDeck: { value: string; suit: string }[]
     deck: shuffledDeck,
     playerHand,
     dealerHand,
-    result: "",
+    resultLabel: "",
+    winner: "",
   };
 };
