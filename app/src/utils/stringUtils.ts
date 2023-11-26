@@ -4,3 +4,7 @@ export const generateRandomString = (): string => {
     
   return Array.from({ length }, () => characters[Math.floor(Math.random() * characters.length)]).join("");
 };
+
+export const capitalize = (string: string) => {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+};

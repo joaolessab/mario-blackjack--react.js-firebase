@@ -1,5 +1,6 @@
 import React from "react";
 import Card from "./Card";
+import { capitalize } from "../utils/stringUtils";
 
 interface IHand {
   hand: { value: string; suit: string }[];
@@ -15,7 +16,7 @@ const Hand: React.FC<IHand> = ({
   isGameOver,
 }) => (
   <div className="dealer-hand">
-    <h2>{type} Hand</h2>
+    <h2>{capitalize(`${type} hand`)}</h2>
 
     <div className="hand">
       {hand.map((card, index) => (
