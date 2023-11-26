@@ -1,0 +1,10 @@
+# misc
+.DS_Store
+*.pem
+
+# local env files
+/app/.env
+/app/.env.local
+/app/.env.development.local
+/app/.env.test.local
+/app/.env.production.local
