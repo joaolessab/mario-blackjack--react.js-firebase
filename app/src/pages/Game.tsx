@@ -38,12 +38,6 @@ const Game: React.FC = () => {
     return dealInitialHands(deck);
   });
 
-  useEffect(() => {
-    if (gameState.winner !== "") {
-      saveResult();
-    }
-  }, [gameState]);
-
   const handleHit = () => {
     const newCard = gameState.deck.pop();
 
@@ -135,6 +129,12 @@ const Game: React.FC = () => {
       console.log("Something went wrong");
     }
   };
+
+  useEffect(() => {
+    if (gameState.winner !== "") {
+      saveResult();
+    }
+  }, [gameState]);
     
   const isGameOver = gameState.winner !== "";
 
@@ -165,7 +165,7 @@ const Game: React.FC = () => {
 
       <div className="result">{gameState.resultLabel}</div>
 
-      <History />
+      <History isGameOver={isGameOver} />
     </div>
   );
 };

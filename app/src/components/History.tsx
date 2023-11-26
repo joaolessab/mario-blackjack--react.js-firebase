@@ -12,13 +12,17 @@ import { useAuth } from "../context/AuthContext";
 import { capitalize, timestampToStringDate } from "../utils/stringUtils";
 import Loading from "./Loading";
 
+interface IHistory { 
+  isGameOver: boolean;
+}
+
 interface IGame {
   id: string;
   winner: string;
   currentDate: number;
 }
 
-const History = () => {
+const History: React.FC<IHistory> = ({ isGameOver }) => {
   const { currentUser } = useAuth();
   const [games, setGames] = useState<IGame[]>([]);
   const [loading, setLoading] = useState(false);
@@ -50,7 +54,7 @@ const History = () => {
 
   useEffect(() => {
     fetchData().finally(() => setLoading(false));
-  }, []);
+  }, [isGameOver]);
   
   return (
     <div>
