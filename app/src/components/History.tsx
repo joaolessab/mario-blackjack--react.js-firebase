@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-
 import { db } from "../firebase/firebaseConfig";
 import {
   collection,
@@ -9,9 +8,9 @@ import {
   where,
   limit,
 } from "firebase/firestore";
-
 import { useAuth } from "../context/AuthContext";
 import { capitalize, timestampToStringDate } from "../utils/stringUtils";
+import Loading from "./Loading";
 
 interface IGame {
   id: string;
@@ -22,8 +21,11 @@ interface IGame {
 const History = () => {
   const { currentUser } = useAuth();
   const [games, setGames] = useState<IGame[]>([]);
+  const [loading, setLoading] = useState(false);
 
   const fetchData = async () => {
+    setLoading(true);
+
     const gamesRef = collection(db, "games");
     const q = query(
       gamesRef,
@@ -47,17 +49,19 @@ const History = () => {
   };
 
   useEffect(() => {
-    fetchData();
+    fetchData().finally(() => setLoading(false));
   }, []);
   
   return (
     <div>
       <p>Last 5 Games:</p>
-      {games.map((game, index) => {
-        return (
-          <p key={index}>{capitalize(game.winner)} - {timestampToStringDate(game.currentDate)}</p>
-        );
-      })}
+      {loading ? (
+        <Loading />
+      ) : (
+        games.map((game) => (
+          <p key={game.id}>{capitalize(game.winner)} - {timestampToStringDate(game.currentDate)}</p>
+        ))
+      )}
     </div>
   );
 };
