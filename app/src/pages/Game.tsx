@@ -10,6 +10,7 @@ import { generateRandomString } from "../utils/stringUtils";
 
 import Hand from "../components/Hand";
 import Logout from "../components/Logout";
+import History from "../components/History";
 
 import {
   doc,
@@ -163,6 +164,8 @@ const Game: React.FC = () => {
       />
 
       <div className="result">{gameState.resultLabel}</div>
+
+      <History />
     </div>
   );
 };
