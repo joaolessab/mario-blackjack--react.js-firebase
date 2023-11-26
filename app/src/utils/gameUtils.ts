@@ -1,4 +1,4 @@
-import { IGameState } from "../components/Game";
+import { IGameState } from "../pages/Game";
 
 export const generateDeck = (): { value: string; suit: string }[] => {
   const values = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"];
