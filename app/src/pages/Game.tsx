@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Hand from "../components/Hand";
 
 import {
   generateDeck,
@@ -8,6 +7,8 @@ import {
   dealInitialHands,
 } from "../utils/gameUtils";
 
+import Hand from "../components/Hand";
+import Logout from "../components/Logout";
 
 export interface IGameState {
   deck: { value: string; suit: string }[];
@@ -79,6 +80,8 @@ const Game: React.FC = () => {
 
   return (
     <div className="game">
+      <Logout />
+      
       <h1>Blackjack</h1>
 
       <Hand
