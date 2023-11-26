@@ -1,10 +1,12 @@
 import React from "react";
-import Game from "./components/Game";
+import { AuthProvider } from "./context/AuthContext";
+
+import Game from "./pages/Game";
 
 const App: React.FC = () => (
-  <div className="app">
+  <AuthProvider>
     <Game />
-  </div>
+  </AuthProvider>
 );
 
 export default App;
