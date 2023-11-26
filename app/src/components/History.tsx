@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import { db } from "../firebase/firebaseConfig";
 import {
   collection,
-  onSnapshot,
+  getDocs,
   orderBy,
   query,
   where,
@@ -23,18 +23,32 @@ const History = () => {
   const { currentUser } = useAuth();
   const [games, setGames] = useState<IGame[]>([]);
 
-  const gamesRef = collection(db, "games");
-  const q = query(gamesRef, where("user", "==", currentUser.uid),orderBy("currentDate", "desc"), limit(5));
+  const fetchData = async () => {
+    const gamesRef = collection(db, "games");
+    const q = query(
+      gamesRef,
+      where("user", "==", currentUser.uid),
+      orderBy("currentDate", "desc"),
+      limit(5)
+    );
 
-  onSnapshot(q, (querySnapshot: any) => {
-    const games = querySnapshot.docs.map((doc) => ({
-      ...doc.data(),
-      id: doc.id,
-      currentDate: doc.data().currentDate,
-    })) as IGame[];
-    console.log(games);
-    setGames(games);
-  });
+    try {
+      const querySnapshot = await getDocs(q);
+      const games = querySnapshot.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id,
+        currentDate: doc.data().currentDate,
+      })) as IGame[];
+
+      setGames(games);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
   
   return (
     <div>
