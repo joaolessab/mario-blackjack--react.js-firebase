@@ -10,5 +10,5 @@ export const capitalize = (string: string) => {
 };
 
 export const timestampToStringDate = (timeStamp) => {
-  return new Date(timeStamp?.toDate())?.toLocaleString();
+  return timeStamp ? new Date(timeStamp.toDate()).toLocaleString() : new Date().toLocaleString();
 };
