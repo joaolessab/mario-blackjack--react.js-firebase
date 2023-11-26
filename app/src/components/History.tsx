@@ -7,14 +7,16 @@ import {
   orderBy,
   query,
   where,
+  limit,
 } from "firebase/firestore";
 
 import { useAuth } from "../context/AuthContext";
+import { capitalize, timestampToStringDate } from "../utils/stringUtils";
 
 interface IGame {
   id: string;
   winner: string;
-  timestamp: number;
+  currentDate: number;
 }
 
 const History = () => {
@@ -22,26 +24,26 @@ const History = () => {
   const [games, setGames] = useState<IGame[]>([]);
 
   const gamesRef = collection(db, "games");
-  const q = query(gamesRef, where("user", "==", currentUser.uid),orderBy("currentDate", "asc"));
+  const q = query(gamesRef, where("user", "==", currentUser.uid),orderBy("currentDate", "desc"), limit(5));
 
   onSnapshot(q, (querySnapshot: any) => {
     const games = querySnapshot.docs.map((doc) => ({
       ...doc.data(),
       id: doc.id,
-      timestamp: doc.data().timestamp?.toDate().getTime(),
+      currentDate: doc.data().currentDate,
     })) as IGame[];
-
-    // Limit to the last 5 games
-    setGames(games.slice(-5));
+    console.log(games);
+    setGames(games);
   });
   
   return (
     <div>
       <p>Last 5 Games:</p>
-
-      {games.map((game, index) => (
-        <p key={index}>{game.winner}</p>
-      ))}
+      {games.map((game, index) => {
+        return (
+          <p key={index}>{capitalize(game.winner)} - {timestampToStringDate(game.currentDate)}</p>
+        );
+      })}
     </div>
   );
 };

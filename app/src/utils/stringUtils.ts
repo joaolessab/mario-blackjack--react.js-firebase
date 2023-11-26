@@ -8,3 +8,7 @@ export const generateRandomString = (): string => {
 export const capitalize = (string: string) => {
   return string.charAt(0).toUpperCase() + string.slice(1);
 };
+
+export const timestampToStringDate = (timeStamp) => {
+  return new Date(timeStamp?.toDate())?.toLocaleString();
+};
