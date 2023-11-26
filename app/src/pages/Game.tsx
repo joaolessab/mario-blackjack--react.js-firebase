@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Hand from "./Hand";
+import Hand from "../components/Hand";
 
 import {
   generateDeck,
