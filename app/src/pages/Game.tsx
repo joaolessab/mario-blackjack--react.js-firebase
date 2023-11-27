@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
 
+import styled from "styled-components";
+import Hand from "../components/Hand";
+import Logout from "../components/Logout";
+import History from "../components/History";
+
 import {
   generateDeck,
   shuffleDeck,
   calculateScore,
   dealInitialHands,
 } from "../utils/gameUtils";
-import { generateRandomString } from "../utils/stringUtils";
-
-import Hand from "../components/Hand";
-import Logout from "../components/Logout";
-import History from "../components/History";
 
 import {
   doc,
@@ -20,6 +20,7 @@ import {
 
 import { db } from "../firebase/firebaseConfig";
 import { useAuth } from "../context/AuthContext";
+import { generateRandomString } from "../utils/stringUtils";
 
 export interface IGameState {
   deck: { value: string; suit: string }[];
@@ -139,7 +140,7 @@ const Game: React.FC = () => {
   const isGameOver = gameState.winner !== "";
 
   return (
-    <div className="game">
+    <GameContainer>
       <Logout />
       
       <h1>Blackjack</h1>
@@ -150,11 +151,11 @@ const Game: React.FC = () => {
         score={`Score: ${calculateScore(gameState.playerHand)}`}
       />
       
-      <div className="actions">
+      <ActionsContainer>
         <button onClick={handleHit} disabled={isGameOver}>Hit</button>
         <button onClick={handleStand} disabled={isGameOver}>Stand</button>
         <button onClick={handleRestart}>Restart</button>
-      </div>
+      </ActionsContainer>
 
       <Hand
         hand={gameState.dealerHand}
@@ -163,11 +164,26 @@ const Game: React.FC = () => {
         isGameOver={isGameOver}
       />
 
-      <div className="result">{gameState.resultLabel}</div>
+      <ResultContainer>{gameState.resultLabel}</ResultContainer>
 
       <History isGameOver={isGameOver} />
-    </div>
+    </GameContainer>
   );
 };
 
 export default Game;
+
+const GameContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const ActionsContainer = styled.div`
+  margin: 10px;
+`;
+
+const ResultContainer = styled.div`
+  font-size: 18px;
+  margin-top: 20px;
+`;

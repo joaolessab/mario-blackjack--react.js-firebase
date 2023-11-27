@@ -1,5 +1,7 @@
 import React from "react";
 import Card from "./Card";
+import styled from "styled-components";
+
 import { capitalize } from "../utils/stringUtils";
 
 interface IHand {
@@ -15,10 +17,10 @@ const Hand: React.FC<IHand> = ({
   score,
   isGameOver,
 }) => (
-  <div className="dealer-hand">
+  <HandContainer>
     <h2>{capitalize(`${type} hand`)}</h2>
 
-    <div className="hand">
+    <HandList>
       {hand.map((card, index) => (
         <React.Fragment key={index}>
           {type === "player" ? (
@@ -30,10 +32,19 @@ const Hand: React.FC<IHand> = ({
           )}
         </React.Fragment>
       ))}
-    </div>
+    </HandList>
 
     <p>{score}</p>
-  </div>
+  </HandContainer>
 );
 
 export default Hand;
+
+const HandContainer = styled.div`
+  font-size: 18px;
+  margin-top: 20px;
+`;
+
+const HandList = styled.div`
+  display: flex;
+`;
