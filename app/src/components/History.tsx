@@ -1,4 +1,8 @@
 import React, { useState, useEffect } from "react";
+import styled from "styled-components";
+
+import { ReactComponent as CoinIcon } from "../assets/images/coin.svg";
+
 import { db } from "../firebase/firebaseConfig";
 import {
   collection,
@@ -57,17 +61,46 @@ const History: React.FC<IHistory> = ({ isGameOver }) => {
   }, [isGameOver]);
   
   return (
-    <div>
-      <p>Last 5 Games:</p>
+    <HistoryContainer>
+      <h2>Last 5 Games:</h2>
       {loading ? (
         <Loading />
       ) : (
         games.map((game) => (
-          <p key={game.id}>{capitalize(game.winner)} - {timestampToStringDate(game.currentDate)}</p>
+          <div key={game.id}>
+            <WinnerLine>
+              <CoinIcon />
+              <p>{capitalize(game.winner)}</p>
+            </WinnerLine>
+            <DateText>{timestampToStringDate(game.currentDate)}</DateText>
+          </div>
         ))
       )}
-    </div>
+    </HistoryContainer>
   );
 };
 
 export default History;
+
+const HistoryContainer = styled.div`
+  position: absolute;
+  top: 25%;
+  left: 40px;
+  border: 2px solid black;
+  border-radius: 8px;
+  padding: 20px;
+  z-index: 2;
+  background-color: white;
+`;
+
+const WinnerLine = styled.div`
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  margin-left: -13px;
+`;
+
+const DateText = styled.p`
+  font-size: 12px;
+  margin-top: -10px;
+`;

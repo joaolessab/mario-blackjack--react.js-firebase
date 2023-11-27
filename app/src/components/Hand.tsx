@@ -41,6 +41,10 @@ const Hand: React.FC<IHand> = ({
 export default Hand;
 
 const HandContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   font-size: 18px;
   margin-top: 20px;
 `;

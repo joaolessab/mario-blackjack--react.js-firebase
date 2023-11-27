@@ -145,24 +145,26 @@ const Game: React.FC = () => {
       
       <h1>MARIO BLACKJACK</h1>
 
-      <Hand
-        hand={gameState.playerHand}
-        type="player"
-        score={`Score: ${calculateScore(gameState.playerHand)}`}
-      />
+      <Table>
+        <Hand
+          hand={gameState.playerHand}
+          type="player"
+          score={`Score: ${calculateScore(gameState.playerHand)}`}
+        />
       
-      <ActionsContainer>
-        <button onClick={handleHit} disabled={isGameOver}>Hit</button>
-        <button onClick={handleStand} disabled={isGameOver}>Stand</button>
-        <button onClick={handleRestart}>Restart</button>
-      </ActionsContainer>
+        <ActionsContainer>
+          <button onClick={handleHit} disabled={isGameOver}>Hit</button>
+          <button onClick={handleStand} disabled={isGameOver}>Stand</button>
+          <button onClick={handleRestart}>Restart</button>
+        </ActionsContainer>
 
-      <Hand
-        hand={gameState.dealerHand}
-        type="dealer"
-        score={`Score: ${isGameOver ? calculateScore(gameState.dealerHand) : "?"}`}
-        isGameOver={isGameOver}
-      />
+        <Hand
+          hand={gameState.dealerHand}
+          type="dealer"
+          score={`Score: ${isGameOver ? calculateScore(gameState.dealerHand) : "?"}`}
+          isGameOver={isGameOver}
+        />
+      </Table>
 
       <ResultContainer>{gameState.resultLabel}</ResultContainer>
 
@@ -177,6 +179,18 @@ const GameContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+`;
+
+const Table = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
+  border: 2px solid black;
+  border-radius: 8px;
+  width: 80%;
+  z-index: 1;
 `;
 
 const ActionsContainer = styled.div`
