@@ -8,7 +8,8 @@ const Loading = () => {
   return (
     <LoadContainer>
       <MarioIcon height="200px" />
-      <ColoredText text="Loading..."></ColoredText>
+      <ColoredText text="Loading..." />
+      <p>Loading...</p>
     </LoadContainer>
   );
 };
