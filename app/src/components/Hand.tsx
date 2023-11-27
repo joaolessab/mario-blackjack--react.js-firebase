@@ -18,7 +18,7 @@ const Hand: React.FC<IHand> = ({
   isGameOver,
 }) => (
   <HandContainer>
-    <h2>{capitalize(`${type} hand`)}</h2>
+    <h2>{capitalize(`${type}s hand`)}</h2>
 
     <HandList>
       {hand.map((card, index) => (

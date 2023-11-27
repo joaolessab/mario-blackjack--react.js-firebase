@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { signOut } from "firebase/auth";
 import { auth } from "../firebase/firebaseConfig";
 
-import { ReactComponent as LogoutIcon } from "../assets/icons/logout.svg";
+import { ReactComponent as LogoutIcon } from "../assets/images/logout.svg";
 
 const Logout = () => {
   return (
