@@ -3,7 +3,7 @@ import { createGlobalStyle } from "styled-components";
 export const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
-    padding: 0;
+    padding: 20px;
     font-family: Roboto, Oxygen, Ubuntu, 'Helvetica Neue', Arial, sans-serif;
     font-size: 14px;
     line-height: 20px;
@@ -13,7 +13,7 @@ export const GlobalStyle = createGlobalStyle`
 
   h1 {
     font-family: 'Mario';
-    font-size: 50px;
+    font-size: 60px;
     color: white;
     -webkit-text-stroke-width: 2px;
     -webkit-text-stroke-color: black;
