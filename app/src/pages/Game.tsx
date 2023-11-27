@@ -143,7 +143,7 @@ const Game: React.FC = () => {
     <GameContainer>
       <Logout />
       
-      <h1>Blackjack</h1>
+      <h1>MARIO BLACKJACK</h1>
 
       <Hand
         hand={gameState.playerHand}
