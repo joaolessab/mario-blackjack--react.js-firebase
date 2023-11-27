@@ -4,6 +4,7 @@ import styled from "styled-components";
 import Hand from "../components/Hand";
 import Logout from "../components/Logout";
 import History from "../components/History";
+import ColoredText from "components/ColoredText";
 
 import {
   generateDeck,
@@ -143,7 +144,7 @@ const Game: React.FC = () => {
     <GameContainer>
       <Logout />
       
-      <h1>MARIO BLACKJACK</h1>
+      <ColoredText text="MARIO BLACKJACK" />
 
       <Table>
         <Hand
