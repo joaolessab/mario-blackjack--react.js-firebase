@@ -10,8 +10,11 @@ const MadeByJoao: React.FC = () => {
 
   return (
     <MadeContainer onClick={redirectToGit}>
-      <GithubIcon></GithubIcon>
-      <p>made by João Vitor Lessa</p>
+      <GithubIcon />
+      <div>
+        <Subtext>made by</Subtext>
+        <Text>João Vitor Lessa</Text>
+      </div>
     </MadeContainer>
   );
 };
@@ -24,8 +27,8 @@ const MadeContainer = styled.div`
   gap: 10px;
   align-items: center;
   justify-content: center;
-  top: 30px;
-  right: 0;
+  top: 50px;
+  right: -20px;
   padding: 10px;
   border-top-left-radius: 200px;
   border-bottom-left-radius: 200px;
@@ -34,8 +37,17 @@ const MadeContainer = styled.div`
   &:hover {
     cursor: pointer;
   }
+`;
 
-  p {
-    color: white;
-  }
+const Text = styled.p`
+  color: white;
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+`;
+
+const Subtext = styled.p`
+  color: white;
+  font-size: 14px;
+  margin: 0;
 `;

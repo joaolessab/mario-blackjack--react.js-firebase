@@ -18,13 +18,14 @@ export default Logout;
 
 const LogoutButton = styled.button`
   position: absolute;
-  right: 35px;
-  top: 35px;
+  right: 10%;
+  top: 75px;
   border-radius: 8px;
   border: 0px;
   height: 40px;
   width: 40px;
   transition: all 150ms;
+  border: 2px solid black;
 
   svg {
     width: 25px;
@@ -34,9 +35,10 @@ const LogoutButton = styled.button`
 
   &:hover {
     cursor: pointer;
+    border: 2px solid #d74b30;
 
     svg {
-      fill: white;
+      fill: #d74b30;
     }
   }
 `;

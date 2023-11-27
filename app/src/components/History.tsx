@@ -70,9 +70,12 @@ const History: React.FC<IHistory> = ({ isGameOver }) => {
           <div key={game.id}>
             <WinnerLine>
               <CoinIcon />
-              <p>{capitalize(game.winner)}</p>
+              <TextContainer>
+                <WinnerText>{capitalize(game.winner)}</WinnerText>
+                <DateText>{timestampToStringDate(game.currentDate)}</DateText>
+              </TextContainer>
             </WinnerLine>
-            <DateText>{timestampToStringDate(game.currentDate)}</DateText>
+           
           </div>
         ))
       )}
@@ -103,4 +106,13 @@ const WinnerLine = styled.div`
 const DateText = styled.p`
   font-size: 12px;
   margin-top: -10px;
+`;
+
+const WinnerText = styled.p`
+  font-weight: 700;
+`;
+
+const TextContainer = styled.div`
+  display: flex;
+  flex-direction: column;
 `;

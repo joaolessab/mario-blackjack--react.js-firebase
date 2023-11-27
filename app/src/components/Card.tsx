@@ -1,28 +1,58 @@
 import React from "react";
 import styled from "styled-components";
 
+import { ReactComponent as QuestionBlockIcon } from "../assets/images/questionblock.svg";
+
+import CardSuit from "./CardSuit";
+
 interface ICard {
   value: string;
   suit: string;
   show?: boolean;
 }
 
+interface ICardValue {
+  value: string;
+  suit: string;
+  suitposition: string;
+}
+
+const CardValue = ({ value, suit, suitposition }: ICardValue) => {
+  return (
+    <CardValueContainer suitposition={suitposition}>
+      <CardTextValue>{value}</CardTextValue>
+      <CardSuit suit={suit} />
+    </CardValueContainer>
+  );
+};
+
 const Card: React.FC<ICard> = ({ value, suit, show = true }) => (
-  <CardContainer>
+  <CardContainer show={show}>
     {show ? (
       <>
-        <CardValue>{value}</CardValue>
-        <CardSuit>{suit}</CardSuit>
+        <CardValue
+          value={value}
+          suit={suit}
+          suitposition="left"
+        />
+
+        <CardValue
+          value={value}
+          suit={suit}
+          suitposition="right"
+        />
       </>
     ) : (
-      <CardBack>Test</CardBack>
+      <QuestionBlockIcon height="42px" />
     )}
   </CardContainer>
 );
 
 export default Card;
 
-const CardContainer = styled.div`
+const CardContainer = styled.div<{
+  show: boolean;
+}>`
   border: 1px solid #333;
   border-radius: 8px;
   padding: 10px;
@@ -32,17 +62,20 @@ const CardContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: ${({ show }) => show ? "space-between" : "center"};
 `;
 
-const CardValue = styled.span`
-  font-size: 16px;
+const CardTextValue = styled.p`
+  font-size: 20px;
+  margin: 0;
+  padding: 0;
 `;
 
-const CardSuit = styled.span`
-  font-size: 20x;
-`;
-
-const CardBack = styled.span`
-  background-color: red;
+const CardValueContainer = styled.div<{
+  suitposition?: string;
+}>`
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-direction: ${({ suitposition }) => suitposition === "right" && "row-reverse"};
 `;

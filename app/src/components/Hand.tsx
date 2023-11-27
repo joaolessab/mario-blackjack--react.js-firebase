@@ -34,7 +34,7 @@ const Hand: React.FC<IHand> = ({
       ))}
     </HandList>
 
-    <p>{score}</p>
+    <h2>{score}</h2>
   </HandContainer>
 );
 

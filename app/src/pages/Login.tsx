@@ -24,10 +24,14 @@ const Login = () => {
   
   return (
     <LoginContainer>
-      <ColoredText text="MARIO" size={100} />
-      <ColoredText text="BLACKJACK" size={100} />
+      <TextContainer>
+        <ColoredText text="MARIO" size={100} />
+        <ColoredText text="BLACKJACK" size={100} />
+      </TextContainer>
 
-      <LoginButton onClick={loginWithGoogle}>Login with Google</LoginButton>
+      <LoginButton onClick={loginWithGoogle}>
+        <h2>Login with Google</h2>
+      </LoginButton>
       
       <MadeByJoao />
     </LoginContainer>
@@ -39,6 +43,7 @@ export default Login;
 const LoginContainer = styled.div`
   display: flex;
   flex-direction: column;
+  transition: all 150ms;
   align-items: center;
   justify-content: center;
   height: 100%;
@@ -49,6 +54,29 @@ const LoginContainer = styled.div`
 
 const LoginButton = styled.button`
   border-radius: 8px;
-  padding: 20px;
   font-size: 14px;
+  border: 2px solid black;
+  padding: 0 20px 0 20px;
+  background-color: transparent;
+
+  &:hover {
+    cursor: pointer;
+    border: 2px solid #ffd315;
+
+    h2 {
+      color: #ffd315;
+    }
+  }
+`;
+
+const TextContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30px;
+  margin-top: 10px;
+
+  h1 {
+    margin-top: 10px;
+  }
 `;

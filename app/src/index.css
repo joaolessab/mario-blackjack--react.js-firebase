@@ -2,3 +2,8 @@
   font-family: 'Mario';
   src: url("./assets/fonts/Mario.ttf") format('truetype');
 }
+
+@font-face {
+  font-family: '8bit';
+  src: url("./assets/fonts/8bit.TTF") format('truetype');
+}

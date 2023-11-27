@@ -3,7 +3,6 @@ import { createGlobalStyle } from "styled-components";
 export const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
-    padding: 20px;
     font-family: Roboto, Oxygen, Ubuntu, 'Helvetica Neue', Arial, sans-serif;
     font-size: 14px;
     line-height: 20px;
@@ -17,5 +16,11 @@ export const GlobalStyle = createGlobalStyle`
     color: white;
     -webkit-text-stroke-width: 2px;
     -webkit-text-stroke-color: black;
+  }
+
+  h2 {
+    font-family: '8bit';
+    font-size: 16px;
+    color: black;
   }
 `;

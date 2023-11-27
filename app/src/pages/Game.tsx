@@ -144,8 +144,10 @@ const Game: React.FC = () => {
     <GameContainer>
       <Logout />
       
-      <ColoredText text="MARIO BLACKJACK" />
-
+      <Header>
+        <ColoredText text="MARIO BLACKJACK" />
+      </Header>
+      
       <Table>
         <Hand
           hand={gameState.playerHand}
@@ -154,9 +156,17 @@ const Game: React.FC = () => {
         />
       
         <ActionsContainer>
-          <button onClick={handleHit} disabled={isGameOver}>Hit</button>
-          <button onClick={handleStand} disabled={isGameOver}>Stand</button>
-          <button onClick={handleRestart}>Restart</button>
+          <ActionButtons onClick={handleHit} disabled={isGameOver}>
+            <h2>HIT</h2>
+          </ActionButtons>
+
+          <ActionButtons onClick={handleStand} disabled={isGameOver}>
+            <h2>STAND</h2>
+          </ActionButtons>
+
+          <ActionButtons onClick={handleRestart}>
+            <h2>RESTART</h2>
+          </ActionButtons>
         </ActionsContainer>
 
         <Hand
@@ -167,7 +177,9 @@ const Game: React.FC = () => {
         />
       </Table>
 
-      <ResultContainer>{gameState.resultLabel}</ResultContainer>
+      <ResultContainer>
+        <h2>{gameState.resultLabel}</h2>
+      </ResultContainer>
 
       <History isGameOver={isGameOver} />
     </GameContainer>
@@ -180,6 +192,13 @@ const GameContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+`;
+
+const Header = styled.div`
+  margin-top: 50px;
 `;
 
 const Table = styled.div`
@@ -192,13 +211,38 @@ const Table = styled.div`
   border-radius: 8px;
   width: 80%;
   z-index: 1;
+  margin-top: 20px;
 `;
 
 const ActionsContainer = styled.div`
-  margin: 10px;
+  margin: 30px 0 30px;
+  display: flex;
+  gap: 20px;
 `;
 
 const ResultContainer = styled.div`
   font-size: 18px;
   margin-top: 20px;
+`;
+
+const ActionButtons = styled.button`
+  border-radius: 8px;
+  height: 40px;
+  border: 2px solid black;
+  width: 150px;
+  background-color: transparent;
+  transition: all 150ms;
+
+  h2 {
+    margin: 0;
+  }
+
+  &:hover {
+    cursor: pointer;
+    border: 2px solid #ffd315;
+
+    h2 {
+      color: #ffd315;
+    }
+  }
 `;
