@@ -8,8 +8,8 @@ A Blackjack card game, made using React.js and Firebase for storing data.
 <br/>
 
 ## Table of Contents 📋
-
 - [Getting Started](#getting-started-)
+  - [Introduction](#introduction)
   - [Prerequisites](#prerequisites)
 - [Running the Project](#running-the-project-%EF%B8%8F)
   - [Installation](#installation)
@@ -19,6 +19,11 @@ A Blackjack card game, made using React.js and Firebase for storing data.
 - [References](#references-)
 
 ## Getting Started 🚀
+
+### Introduction
+- You need to login the app, using the Google Provider <i>(Don't worry, the app does not store your credentials at all. It's all served by the official Google provider and your account is not exposed);</i>
+- The app has its game logic under the utils folder;
+- The app saves the game result into the Firebase, linking with your Google account;
 
 ### Prerequisites
 
