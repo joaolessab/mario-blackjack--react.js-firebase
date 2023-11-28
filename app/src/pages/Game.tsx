@@ -245,4 +245,14 @@ const ActionButtons = styled.button`
       color: #ffd315;
     }
   }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    border: 2px solid black;
+
+    h2 {
+      color: black;
+    }
+  }
 `;
