@@ -8,7 +8,7 @@ interface IHand {
   hand: { value: string; suit: string }[];
   type: string;
   score: string | number;
-  isGameOver: boolean;
+  isGameOver?: boolean;
 }
 
 const Hand: React.FC<IHand> = ({
