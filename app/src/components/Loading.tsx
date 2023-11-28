@@ -9,7 +9,6 @@ const Loading = () => {
     <LoadContainer>
       <MarioIcon height="200px" />
       <ColoredText text="Loading..." />
-      <p>Loading...</p>
     </LoadContainer>
   );
 };
