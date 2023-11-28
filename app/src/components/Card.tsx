@@ -8,7 +8,7 @@ import CardSuit from "./CardSuit";
 interface ICard {
   value: string;
   suit: string;
-  show?: boolean;
+  show: boolean;
 }
 
 interface ICardValue {
