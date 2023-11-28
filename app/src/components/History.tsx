@@ -14,7 +14,6 @@ import {
 } from "firebase/firestore";
 import { useAuth } from "../context/AuthContext";
 import { capitalize, timestampToStringDate } from "../utils/stringUtils";
-import Loading from "./Loading";
 
 interface IHistory { 
   isGameOver: boolean;
@@ -64,20 +63,23 @@ const History: React.FC<IHistory> = ({ isGameOver }) => {
     <HistoryContainer>
       <h2>Last 5 Games:</h2>
       {loading ? (
-        <Loading />
+        <h2>Loading...</h2>
       ) : (
-        games.map((game) => (
-          <div key={game.id}>
-            <WinnerLine>
-              <CoinIcon />
-              <TextContainer>
-                <WinnerText>{capitalize(game.winner)}</WinnerText>
-                <DateText>{timestampToStringDate(game.currentDate)}</DateText>
-              </TextContainer>
-            </WinnerLine>
-           
-          </div>
-        ))
+        games && games.length > 0 ? (
+          games.map((game) => (
+            <div key={game.id}>
+              <WinnerLine>
+                <CoinIcon />
+                <TextContainer>
+                  <WinnerText>{capitalize(game.winner)}</WinnerText>
+                  <DateText>{timestampToStringDate(game.currentDate)}</DateText>
+                </TextContainer>
+              </WinnerLine>
+            </div>
+          ))
+        ) : (
+          <h2>No games to display.</h2>
+        )
       )}
     </HistoryContainer>
   );
