@@ -77,6 +77,11 @@ yarn
 
 ## Demo 🎥
 
+- [Live App here!](https://mario-blackjack-react-js-firebase.vercel.app/)
+
+https://github.com/joaolessab/mario-blackjack--react.js-firebase/assets/21973502/1aac6231-e261-49e1-afbb-78e0d0c8175c
+
+
 ## References 📚
 
 - [Firebase: Setting up a project](https://reactnative.dev/](https://firebase.google.com/docs/web/setup)https://firebase.google.com/docs/web/setup);
