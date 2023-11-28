@@ -35,7 +35,7 @@ yarn
 
 ### Local execution
 
-1. You will need to set credentials for you Firebase database;
+1. You will need to set credentials for you Firebase database (check References section - for more details);
 - 1.1. To create your own `.env` file, run: `cp .env.example .env`;
 - 1.2. Change the variable values of the `.env` file generated, using now your own Firebase credentials;
 2. Run `yarn start`;
@@ -69,4 +69,4 @@ yarn
 
 ## References 📚
 
-- [Firebase: Setting up a project]([https://reactnative.dev/](https://firebase.google.com/docs/web/setup)https://firebase.google.com/docs/web/setup);
+- [Firebase: Setting up a project](https://reactnative.dev/](https://firebase.google.com/docs/web/setup)https://firebase.google.com/docs/web/setup);
