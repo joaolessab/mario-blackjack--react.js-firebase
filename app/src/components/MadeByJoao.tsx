@@ -28,7 +28,7 @@ const MadeContainer = styled.div`
   align-items: center;
   justify-content: center;
   top: 50px;
-  right: -20px;
+  right: 0px;
   padding: 10px;
   border-top-left-radius: 200px;
   border-bottom-left-radius: 200px;

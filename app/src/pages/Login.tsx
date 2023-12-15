@@ -49,7 +49,6 @@ const LoginContainer = styled.div`
   height: 100%;
   width: 100%;
   position: absolute;
-  margin: -20px;
 `;
 
 const LoginButton = styled.button`
@@ -78,5 +77,23 @@ const TextContainer = styled.div`
 
   h1 {
     margin-top: 10px;
+  }
+
+  @media (max-width: 670px) {
+    h1 {
+      font-size: 70px;
+    }
+  }
+
+  @media (max-width: 450px) {
+    h1 {
+      font-size: 60px;
+    }
+  }
+
+  @media (max-width: 340px) {
+    h1 {
+      font-size: 50px;
+    }
   }
 `;
