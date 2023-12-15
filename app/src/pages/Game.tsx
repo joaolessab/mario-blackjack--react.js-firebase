@@ -5,6 +5,7 @@ import Hand from "../components/Hand";
 import Logout from "../components/Logout";
 import History from "../components/History";
 import ColoredText from "components/ColoredText";
+import Actions from "components/Actions";
 
 import {
   generateDeck,
@@ -155,19 +156,12 @@ const Game: React.FC = () => {
           score={`Score: ${calculateScore(gameState.playerHand)}`}
         />
       
-        <ActionsContainer>
-          <ActionButtons onClick={handleHit} disabled={isGameOver}>
-            <h2>HIT</h2>
-          </ActionButtons>
-
-          <ActionButtons onClick={handleStand} disabled={isGameOver}>
-            <h2>STAND</h2>
-          </ActionButtons>
-
-          <ActionButtons onClick={handleRestart}>
-            <h2>RESTART</h2>
-          </ActionButtons>
-        </ActionsContainer>
+        <Actions
+          handleHit={handleHit}
+          handleStand={handleStand}
+          handleRestart={handleRestart}
+          isGameOver={isGameOver}
+        />
 
         <Hand
           hand={gameState.dealerHand}
@@ -214,45 +208,7 @@ const Table = styled.div`
   margin-top: 20px;
 `;
 
-const ActionsContainer = styled.div`
-  margin: 30px 0 30px;
-  display: flex;
-  gap: 20px;
-`;
-
 const ResultContainer = styled.div`
   font-size: 18px;
   margin-top: 20px;
-`;
-
-const ActionButtons = styled.button`
-  border-radius: 8px;
-  height: 40px;
-  border: 2px solid black;
-  width: 150px;
-  background-color: transparent;
-  transition: all 150ms;
-
-  h2 {
-    margin: 0;
-  }
-
-  &:hover {
-    cursor: pointer;
-    border: 2px solid #ffd315;
-
-    h2 {
-      color: #ffd315;
-    }
-  }
-
-  &:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-    border: 2px solid black;
-
-    h2 {
-      color: black;
-    }
-  }
 `;
