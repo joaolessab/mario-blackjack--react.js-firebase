@@ -10,7 +10,7 @@ const MadeByJoao: React.FC = () => {
 
   return (
     <MadeContainer onClick={redirectToGit}>
-      <GithubIcon />
+      <GithubIcon height={40}/>
       <div>
         <Subtext>made by</Subtext>
         <Text>João Vitor Lessa</Text>
@@ -28,8 +28,8 @@ const MadeContainer = styled.div`
   align-items: center;
   justify-content: center;
   top: 50px;
-  right: 0px;
-  padding: 10px;
+  right: 0;
+  padding: 10px 10px 10px 5px;
   border-top-left-radius: 200px;
   border-bottom-left-radius: 200px;
   background-color: #373737;
@@ -42,12 +42,12 @@ const MadeContainer = styled.div`
 const Text = styled.p`
   color: white;
   margin: 0;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 700;
 `;
 
 const Subtext = styled.p`
   color: white;
-  font-size: 14px;
+  font-size: 12px;
   margin: 0;
 `;
